@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 import NavBar from './Navbar';
 
-describe('Navbar', () => {
+describe('NavBar', () => {
   it('renders the Navbar correctly when passed a title and url as props', () => {
     const mockTitle = 'mock title';
     const mockUrl = '/mockUrl';
