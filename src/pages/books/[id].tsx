@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 
 import { useBookData } from '../../hooks/useBookData';
-import CardsContainer from '../../components/CardsContainer';
+import CardsList from '../../components/CardsList/CardsList';
 import { Book } from '../../types/types';
 
 interface BookPage {
@@ -105,7 +105,7 @@ const BookPage: NextPage<BookPage> = ({ books }) => {
           </div>
         </Paper>
 
-        <CardsContainer books={booksByAuthor} />
+        <CardsList books={booksByAuthor} />
       </main>
     </Container>
   );

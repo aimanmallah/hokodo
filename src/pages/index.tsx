@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import { Book } from '../types/types';
-import CardsContainer from '../components/CardsContainer';
+import CardsList from '../components/CardsList/CardsList';
 
 interface HomeProps {
   books: Book[];
@@ -29,7 +29,7 @@ const Home: NextPage<HomeProps> = ({ books }) => {
         >
           Hokodo Books
         </Typography>{' '}
-        {books && <CardsContainer books={books} />}
+        {books && <CardsList books={books} />}
       </main>
     </Container>
   );

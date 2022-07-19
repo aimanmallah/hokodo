@@ -1,13 +1,13 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { mockBooks } from '../assets/mockBooks';
-import { Book } from '../types/types';
-import CardsContainer from './CardsContainer';
+import { mockBooks } from '../../assets/mockBooks';
+import { Book } from '../../types/types';
+import CardsList from './CardsList';
 
-describe('CardsContainer', () => {
+describe('CardsList', () => {
   it.each(mockBooks)('renders BookCards for the books its passed as props', (book: Book) => {
-    render(<CardsContainer books={mockBooks} />);
+    render(<CardsList books={mockBooks} />);
 
     expect(screen.getByText(book.title)).toBeInTheDocument();
     expect(screen.getByText(book.author)).toBeInTheDocument();

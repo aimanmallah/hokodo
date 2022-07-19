@@ -1,13 +1,13 @@
 import Box from '@mui/material/Box';
 
-import BookCard from '../components/Card';
-import { Book } from '../types/types';
+import BookCard from '../Card/Card';
+import { Book } from '../../types/types';
 
-interface CardsContainerProps {
+interface CardsListProps {
   books: Book[];
 }
 
-const CardsContainer: React.FC<CardsContainerProps> = ({ books }) => {
+const CardsList: React.FC<CardsListProps> = ({ books }) => {
   return (
     <Box
       sx={{
@@ -24,4 +24,4 @@ const CardsContainer: React.FC<CardsContainerProps> = ({ books }) => {
   );
 };
 
-export default CardsContainer;
+export default CardsList;

@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import Card from './Card';
-import { Book } from '../types/types';
+import { Book } from '../../types/types';
 
 describe('Card', () => {
   it('renders the Card component correctly when passed a book as props', () => {
