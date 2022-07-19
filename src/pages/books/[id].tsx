@@ -1,5 +1,5 @@
 import React from 'react';
-import type { NextPage, GetServerSideProps } from 'next';
+import type { NextPage, GetServerSideProps, GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -9,17 +9,15 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 
-import { useBookData } from '../../hooks/useBookData';
 import CardsList from '../../components/CardsList/CardsList';
 import { Book } from '../../types/types';
 
 interface BookPage {
-  books: Book[];
+  book: Book;
+  booksByAuthor: Book[];
 }
 
-const BookPage: NextPage<BookPage> = ({ books }) => {
-  const { book, booksByAuthor } = useBookData(books);
-
+const BookPage: NextPage<BookPage> = ({ book, booksByAuthor }) => {
   if (!book) return <div>Book not found</div>;
 
   return (
@@ -111,14 +109,23 @@ const BookPage: NextPage<BookPage> = ({ books }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
+    const id = context.params?.id;
     const result = await fetch('https://hokodo-frontend-interview.netlify.com/data.json');
-    const data = await result.json();
-    return { props: { books: data.books } };
+    const { books } = await result.json();
+
+    const book: Book = books.find((item: Book) => item.id === id);
+    const author = book ? book.author : '';
+
+    const booksByAuthor: Book[] = books.filter(
+      (item: Book) => item.author == author && item !== book
+    );
+
+    return { props: { book, booksByAuthor } };
   } catch (e) {
     console.log(e);
-    return { props: { books: [] } };
+    return { props: { book: null, booksByAuthor: [] } };
   }
 };
 
